@@ -22,9 +22,9 @@
     // you may not be able to install the app. 
     "icons": [
         {
-          "src": "/suspicion_notebook/img/icon.png",
+          "src": "/suspicion_notebook/images/icon.png",
           "type": "image/png",
-          "sizes": "399x399"
+          "sizes": "700x700"
         }
     ]
   }
