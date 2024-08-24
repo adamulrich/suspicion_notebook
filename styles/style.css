@@ -1,3 +1,4 @@
+
 body {
     justify-content: center;
     align-content: center;
@@ -15,11 +16,12 @@ body {
 main {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: stretch
 }
 
 .card {
     margin: 7px;
+    
     
 }
 
