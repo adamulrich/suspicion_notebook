@@ -7,6 +7,8 @@
     <title>Suspicion Notebook</title>
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="canonical" href="https://adamulrich.github.io/suspicion_notebook/" />
+    <link rel="manifest" href="/github-page-pwa/manifest.webmanifest">
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
@@ -17,6 +19,14 @@
         <h1>Suspicion Notebook</h1>
         <img src="images/pic3121492.png" style="max-width:100%;max-height:100%;">
     </header>
+    <script>
+        if (navigator.serviceWorker) {
+          navigator.serviceWorker.register (
+            '/suspicion_notebook/sw.js',
+            {scope: '/suspicion_notebook/'}
+          )
+        }
+    </script>
      <main class="m-3">
     
         <div class="card">
