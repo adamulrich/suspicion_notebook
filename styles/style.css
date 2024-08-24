@@ -7,8 +7,9 @@ body {
 .checkbox-label {
     width: 80px;
     outline: 1px solid black;
-    height: 27px;
+    height: 40px;
     text-align: center;
+    padding-top: 7px;
 }
 
 main {
