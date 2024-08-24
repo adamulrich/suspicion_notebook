@@ -3,7 +3,7 @@
     "short_name": "SN",
     "description": "Helper App for playing Suspicion Board Game",
     "scope": "/suspicion_notebook/",
-    "start_url": "/suspicion_notebook/",
+    "start_url": "/",
    
     "background_color": "#ffffff",
     "theme_color": "#ffffff",
