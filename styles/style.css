@@ -1,0 +1,39 @@
+body {
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+}
+
+.checkbox-label {
+    width: 80px;
+    outline: 1px solid black;
+    height: 30px;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 10px;
+}
+
+input[type=checkbox]{
+    accent-color: red;
+    text-align: right;
+}
+
+input[type=text]{
+    margin: 5px;
+}
+
+.card-checkbox {
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+.player-label {
+
+}
