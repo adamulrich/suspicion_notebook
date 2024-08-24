@@ -12,7 +12,7 @@
    
     "icons": [
         {
-          "src": "/images/icon.png",
+          "src": "suspicion_notebook/images/icon.png",
           "type": "image/png",
           "sizes": "399x399"
         }
