@@ -2,7 +2,7 @@
 var GHPATH = '/suspicion_notebook';
  
 // Choose a different app prefix name
-var APP_PREFIX = 'gppwa_';
+var APP_PREFIX = 'snpwa_';
  
 // The version of the cache. Every time you change any of the files
 // you need to change this version (version_01, version_02…). 
@@ -18,5 +18,6 @@ var URLS = [
   `${GHPATH}/styles/style.css`,
   `${GHPATH}/styles/bootstrap.min.css`,
   `${GHPATH}/suspicion.js`,
-  `${GHPATH}/images/pic3121492.png`
+  `${GHPATH}/images/pic3121492.png`,
+  `${GHPATH}/images/icon.png`,
 ]
