@@ -75,7 +75,7 @@ function addPlayer() {
       <label class= "checkbox-label" style="background-color: #bd5700;color: aliceblue;" for="brown<#number#>">brown</label>
   </div>
   <div class="card-checkbox">
-      <input type="checkbox" class="checkbox" name="gray" id="gray<#number#>" style="content: 'X';">
+      <input type="checkbox" class="checkbox" name="gray" id="gray<#number#>" >
       <label class="checkbox-label" style="background-color: #bdbab4;color: aliceblue" for="gray<#number#>">gray</label>
   </div>
   <div class="card-checkbox">
@@ -114,4 +114,15 @@ function addPlayer() {
     document.getElementById("card-container").innerHTML += html;
     playerCount +=1
   }
+}
+
+function eliminateColor(name) {
+  // select all items with name
+  const selection = document.getElementsByName(name);
+  
+  //mark them all as selected
+  selection.forEach( (item) => {
+    item.checked = document.getElementById(name).checked;
+  })
+
 }

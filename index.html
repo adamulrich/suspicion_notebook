@@ -66,6 +66,53 @@
                 <label id="score">0</label>
             </section>
         </div>
+        <div id="colors_seen">
+            <h2>Colors Seen</h2>
+            <div class="score-header" id="row_1">
+                <section class="card-checkbox">
+                    <input type="checkbox" name="blue" id="blue" onclick="eliminateColor('blue')">
+                    <label class= "checkbox-label" style="background-color: #0053a5;color: aliceblue;" for="blue">blue</label>
+                </section>
+                <section class="card-checkbox">
+                    <input type="checkbox" name="brown" id="brown" onclick="eliminateColor('brown')">
+                    <label class= "checkbox-label" style="background-color: #bd5700;color: aliceblue;" for="brown">brown</label>
+                </section>
+                <section class="card-checkbox">
+                    <input type="checkbox" class="checkbox" name="gray" id="gray" onclick="eliminateColor('gray')" >
+                    <label class="checkbox-label" style="background-color: #bdbab4;color: aliceblue" for="gray">gray</label>
+                </section>
+                <section class="card-checkbox">
+                    <input type="checkbox" name="green" id="green" onclick="eliminateColor('green')">
+                    <label class= "checkbox-label" style="background-color: #b1b801;color: aliceblue;" for="green">green</label>
+                </section>
+                <section class="card-checkbox">
+                    <input type="checkbox" name="orange" id="orange" onclick="eliminateColor('orange')">
+                    <label class= "checkbox-label" style="background-color: #e99303;color: aliceblue;" for="orange">orange</label>
+                </section>
+            </div>
+            <div class="score-header" id="row_2">
+                <section class="card-checkbox">
+                    <input type="checkbox" name="pink" id="pink" onclick="eliminateColor('pink')">
+                    <label class= "checkbox-label" style="background-color: #f697c8;color: aliceblue;" for="pink">pink</label>
+                </section>
+                <section class="card-checkbox">
+                    <input type="checkbox" name="purple" id="purple" onclick="eliminateColor('purple')">
+                    <label  class= "checkbox-label" style="background-color: #5b157c;color: aliceblue;" for="purple">purple</label>
+                </section>
+                <section class="card-checkbox">
+                    <input type="checkbox" name="red" id="red" onclick="eliminateColor('red')">
+                    <label class= "checkbox-label" style="background-color: #b90202;color: aliceblue;" for="red">red</label>
+                </section>
+                <section class="card-checkbox">
+                    <input type="checkbox" name="white" id="white" onclick="eliminateColor('white')">
+                    <label class= "checkbox-label" style="background-color: white;color: black;" for="white">white</label>
+                </section>
+                <section class="card-checkbox">
+                    <input type="checkbox" name="yellow" id="yellow" onclick="eliminateColor('yellow')">
+                    <label class= "checkbox-label" style="background-color: #fff703;color: black;" for="yellow">yellow</label>
+                </section>
+            </div>
+        </div>
         <div>
             <button class="btn btn-primary" id="add_player" name="add_player" onclick="addPlayer()">Add Player</button>
         </div>
@@ -112,7 +159,7 @@
                 <label class= "checkbox-label" style="background-color: #bd5700;color: aliceblue;" for="brown1">brown</label>
             </div>
             <div class="card-checkbox">
-                <input type="checkbox" class="checkbox" name="gray" id="gray1" style="content: 'X';">
+                <input type="checkbox" class="checkbox" name="gray" id="gray1">
                 <label class="checkbox-label" style="background-color: #bdbab4;color: aliceblue" for="gray1">gray</label>
             </div>
             <div class="card-checkbox">
