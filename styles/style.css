@@ -1,5 +1,6 @@
 
 body {
+    max-width: 800px;
     justify-content: center;
     align-content: center;
     align-self: center;
@@ -25,10 +26,17 @@ main {
     
 }
 
+select {
+    margin-bottom: 5px;
+}
 
-
-input[type=checkbox]{
+.card-checkbox{
     accent-color: red;
+    text-align: right;
+}
+
+.player-correct-checkbox{
+    accent-color: rgb(55, 232, 55);
     text-align: right;
 }
 
@@ -42,6 +50,27 @@ input[type=text]{
     margin-bottom: 3px;
 }
 
-.player-label {
+.score-header {
+    display: flex;
+    justify-content: space-around;
+}
 
+.image {
+    margin-bottom: 5px;   
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.bold {
+    font-weight: bolder;
+}
+
+h1 {
+    text-align: center;
+}
+
+.score-header {
+    margin-bottom: 10px;
 }

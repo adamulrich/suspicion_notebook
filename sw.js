@@ -8,7 +8,7 @@ var APP_PREFIX = 'snpwa_';
 // you need to change this version (version_01, version_02…). 
 // If you don't change the version, the service worker will give your
 // users the old files!
-var VERSION = 'version_08';
+var VERSION = 'version_09';
  
 // The files to make available for offline use. make sure to add 
 // others to this list
@@ -20,4 +20,7 @@ var URLS = [
   `${GHPATH}/suspicion.js`,
   `${GHPATH}/images/pic3121492.png`,
   `${GHPATH}/images/icon.png`,
+  `${GHPATH}/images/orange_gem.png`,
+  `${GHPATH}/images/red_gem.png`,
+  `${GHPATH}/images/green_gem.png`,
 ]
