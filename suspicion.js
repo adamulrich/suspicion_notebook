@@ -21,7 +21,7 @@ visualViewport.onresize = () => {
   });
 
   // const scoreheader = document.querySelectorAll('.score-header section');
-  // var new_width = 75 * scale *1.2;
+  // var new_width = 85 * scale *1;
   // new_width = new_width.toString() + "px"
   // scoreheader.forEach(element => {
   //   element.style.width =  new_width;
