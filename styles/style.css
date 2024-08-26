@@ -84,9 +84,12 @@ input[type=number] {
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
- opacity: 1 !important;
- margin: 0;
- width: 25px;
- height: 45px;
+    opacity: 1 !important;
+    margin: 0;
+    width: 25px;
+    height: 45px;
 }
 
+.counter {
+    caret-color: transparent;
+}

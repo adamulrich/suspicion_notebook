@@ -170,3 +170,7 @@ function setColor() {
   })
 
 }
+
+const counters = document.getElementsByClassName("counter");
+[...counters].forEach((item) => {
+  item.addEventListener("keydown", e => e.preventDefault()) })
