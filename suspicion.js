@@ -11,8 +11,24 @@ visualViewport.onresize = () => {
   new_width = new_width.toString() + "px"
   cardClasses.forEach(element => {
     element.style.width =  new_width;
-    
   });
+
+  const checkboxes = document.querySelectorAll('.card-checkbox');
+  var new_width = 65 * scale *1.5;
+  new_width = new_width.toString() + "px"
+  checkboxes.forEach(element => {
+    element.style.width =  new_width;
+  });
+
+  const scoreheader = document.querySelectorAll('.score-header section');
+  var new_width = 75 * scale *1.2;
+  new_width = new_width.toString() + "px"
+  scoreheader.forEach(element => {
+    element.style.width =  new_width;
+  });
+
+
+
 };
 
 function calculateScore() {

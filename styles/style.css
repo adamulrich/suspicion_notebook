@@ -54,6 +54,9 @@ input[type=text]{
     flex-wrap: wrap;
     justify-content: space-around;
     margin-right: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+
 }
 
 .image {
@@ -70,10 +73,6 @@ input[type=text]{
 
 h1, h2 {
     text-align: center;
-}
-
-.score-header {
-    margin-bottom: 10px;
 }
 
 input[type=number]::-webkit-inner-spin-button,
