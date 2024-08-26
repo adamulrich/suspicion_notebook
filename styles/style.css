@@ -7,11 +7,12 @@ body {
 }
 
 .checkbox-label {
-    width: 80px;
+    width: 65px;
     outline: 1px solid black;
     height: 40px;
     text-align: center;
     padding-top: 7px;
+    margin-right: 2px;
 }
 
 main {
@@ -21,9 +22,7 @@ main {
 }
 
 .card {
-    margin: 7px;
-    
-    
+    margin: 5px;
 }
 
 select {
@@ -47,12 +46,14 @@ input[type=text]{
 
 .card-checkbox {
     text-align: center;
-    margin-bottom: 3px;
+    margin-bottom: 7px;
 }
 
 .score-header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
+    margin-right: 10px;
 }
 
 .image {
@@ -73,4 +74,12 @@ h1, h2 {
 
 .score-header {
     margin-bottom: 10px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+ opacity: 1 !important;
+ margin: 0;
+ width: 15px;
+ height: 35px;
 }
