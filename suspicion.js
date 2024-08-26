@@ -20,12 +20,12 @@ visualViewport.onresize = () => {
     element.style.width =  new_width;
   });
 
-  const scoreheader = document.querySelectorAll('.score-header section');
-  var new_width = 75 * scale *1.2;
-  new_width = new_width.toString() + "px"
-  scoreheader.forEach(element => {
-    element.style.width =  new_width;
-  });
+  // const scoreheader = document.querySelectorAll('.score-header section');
+  // var new_width = 75 * scale *1.2;
+  // new_width = new_width.toString() + "px"
+  // scoreheader.forEach(element => {
+  //   element.style.width =  new_width;
+  // });
 
 
 
