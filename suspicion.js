@@ -70,7 +70,7 @@ function addPlayer() {
 
   <label class="label">Player <#number#> Color</label>
   <select class="player_color_selection" name="player1_color" id="player<#number#>_color" onchange="setColor()" style="background-color:#00f2ff">
-      <option default value="unknown" >unknown</option>
+      <option default value="unknown" style="background-color:#00f2ff ;color:black;" >unknown</option>
       <option value="pink" style="background-color: #f697c8;color: aliceblue;">pink</option>
       <option value="red" style="background-color: #b90202;color: aliceblue;">red</option>
       <option value="brown" style="background-color: #bd5700;color: aliceblue;">brown</option>
@@ -158,9 +158,15 @@ function setColor() {
   console.log(player_colors.length);
   [...player_colors].forEach( (item) => {
     if (item.value != "unknown") {
-      item.style="background-color:"+item.value;
+      item.style.backgroundColor = item.value;
     }
     else
-    {  item.style="background-color:#00f2ff";}
+    {  item.style.backgroundColor = "#00f2ff";}
+    if (['yellow','white','unknown'].includes(item.value)) {
+      item.style.color = "black";
+    } else {
+      item.style.color = "white";
+    }
   })
+
 }
