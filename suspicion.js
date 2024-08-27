@@ -17,7 +17,7 @@ const counters = document.getElementsByClassName("counter");
 visualViewport.onresize = () => {
   var scale = visualViewport.scale;
 
-  // set all cards to scale
+  // set all cards to scale when pinch zooming
   const cardClasses = document.querySelectorAll('input[type=text]');
   var new_width = 100 * scale *1;
   new_width = new_width.toString() + "px"
@@ -25,7 +25,7 @@ visualViewport.onresize = () => {
     element.style.width =  new_width;
   });
 
-
+  // set all global checkboxes to scale when pinch zooming
   const checkboxes = document.querySelectorAll('.card-checkbox-global');
   var new_width = 65 * scale *1.2;
   new_width = new_width.toString() + "px"
@@ -34,8 +34,6 @@ visualViewport.onresize = () => {
   });
 
 };
-
-
 
 function calculateScore() {
 
@@ -65,6 +63,8 @@ function calculateScore() {
 }
 
 function addPlayer() {
+
+  // create template
   const html_template = `
   <div class="card">
   <label class="label label-default">Player <#number#> Name</label>
@@ -142,11 +142,17 @@ function addPlayer() {
   
 </div>`
 
+  // if there are less than 6 players, than add a new player
   if (playerCount < 6) {
+    // replace <#number#> in the template with the new player count
     var html = html_template.replaceAll("<#number#>",(playerCount+1).toString());
+
+    // create a new node and set the innerHTML, then append
     var node = document.createElement("div");
     node.innerHTML = html;
     document.getElementById("card-container").appendChild(node);
+
+    // increment count
     playerCount +=1;
   }
 }
@@ -171,8 +177,10 @@ function eliminateColor(name) {
 }
 
 function setColor() {
+  // get all the player color selection values
   const player_colors = document.getElementsByClassName("player_color_selection");
   
+  // walk the list and set the foreground and background color correctly.
   [...player_colors].forEach( (item) => {
     if (item.value != "unknown") {
       item.style.backgroundColor = item.value;
@@ -188,6 +196,7 @@ function setColor() {
 
 }
 
+// set the value of the checkbox in the global array
 function updatePlayerColorElimination(element) {
   playerColorElimination[element.id]= element.checked;
 }
