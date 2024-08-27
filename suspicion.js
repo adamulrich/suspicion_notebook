@@ -1,8 +1,9 @@
-window.onbeforeunload = function() {
-    return "Data will be lost if you leave the page, are you sure?";
-  };
+// window.onbeforeunload = function() {
+//     return "Data will be lost if you leave the page, are you sure?";
+//   };
 
 var playerCount = 0;
+var playerColorElimination = {};
 
 visualViewport.onresize = () => {
   var scale = visualViewport.scale;
@@ -85,52 +86,52 @@ function addPlayer() {
   </select>
   <!-- pink -->
   <div class="card-checkbox">
-      <input type="checkbox" name="pink" id="pink<#number#>">
+      <input type="checkbox" name="player_pink" id="pink<#number#>" onclick="updatePlayerColorElimination(this)">
       <label class= "checkbox-label" style="background-color: #f697c8;color: aliceblue;" for="pink<#number#>">pink</label>
   </div>
   <!-- red -->
   <div class="card-checkbox">
-      <input type="checkbox" name="red" id="red<#number#>">
+      <input type="checkbox" name="player_red" id="red<#number#>" onclick="updatePlayerColorElimination(this)">
       <label class= "checkbox-label" style="background-color: #b90202;color: aliceblue;" for="red<#number#>">red</label>
   </div>
   <!-- brown -->
   <div class="card-checkbox">
-      <input type="checkbox" name="brown" id="brown<#number#>">
+      <input type="checkbox" name="player_brown" id="brown<#number#>" onclick="updatePlayerColorElimination(this)">
       <label class= "checkbox-label" style="background-color: #bd5700;color: aliceblue;" for="brown<#number#>">brown</label>
   </div>
   <!-- orange -->
   <div class="card-checkbox">
-      <input type="checkbox" name="orange" id="orange<#number#>">
+      <input type="checkbox" name="player_orange" id="orange<#number#>" onclick="updatePlayerColorElimination(this)">
       <label class= "checkbox-label" style="background-color: #e99303;color: aliceblue;" for="orange<#number#>">orange</label>
   </div>
   <!-- yellow -->
   <div class="card-checkbox">
-      <input type="checkbox" name="yellow" id="yellow<#number#>">
+      <input type="checkbox" name="player_yellow" id="yellow<#number#>" onclick="updatePlayerColorElimination(this)">
       <label class= "checkbox-label" style="background-color: #fff703;color: black;" for="yellow<#number#>">yellow</label>
   </div>
   <!-- green -->
   <div class="card-checkbox">
-      <input type="checkbox" name="green" id="green<#number#>">
+      <input type="checkbox" name="player_green" id="green<#number#>" onclick="updatePlayerColorElimination(this)">
       <label class= "checkbox-label" style="background-color: #b1b801;color: aliceblue;" for="green<#number#>">green</label>
   </div>
   <!-- blue -->
   <div class="card-checkbox">
-      <input type="checkbox" name="blue" id="blue<#number#>">
+      <input type="checkbox" name="player_blue" id="blue<#number#>" onclick="updatePlayerColorElimination(this)">
       <label class= "checkbox-label" style="background-color: #0053a5;color: aliceblue;" for="blue<#number#>">blue</label>
   </div>
   <!-- puple -->
   <div class="card-checkbox">
-      <input type="checkbox" name="purple" id="purple<#number#>">
+      <input type="checkbox" name="player_purple" id="purple<#number#>" onclick="updatePlayerColorElimination(this)">
       <label  class= "checkbox-label" style="background-color: #5b157c;color: aliceblue;" for="purple<#number#>">purple</label>
   </div>
   <!-- gray -->
   <div class="card-checkbox">
-      <input type="checkbox" class="checkbox" name="gray" id="gray<#number#>" >
+      <input type="checkbox" name="player_gray" id="gray<#number#>" onclick="updatePlayerColorElimination(this)">
       <label class="checkbox-label" style="background-color: #bdbab4;color: aliceblue" for="gray<#number#>">gray</label>
   </div>
   <!-- white -->
   <div class="card-checkbox">
-      <input type="checkbox" name="white" id="white<#number#>">
+      <input type="checkbox" name="player_white" id="white<#number#>" onclick="updatePlayerColorElimination(this)">
       <label class= "checkbox-label" style="background-color: white;color: black;" for="white<#number#>">white</label>
   </div>
   
@@ -138,24 +139,35 @@ function addPlayer() {
 
   if (playerCount < 6) {
     var html = html_template.replaceAll("<#number#>",(playerCount+1).toString());
-    document.getElementById("card-container").innerHTML += html;
-    playerCount +=1
+    var node = document.createElement("div");
+    node.innerHTML = html;
+    document.getElementById("card-container").appendChild(node);
+    playerCount +=1;
   }
 }
 
 function eliminateColor(name) {
   // select all items with name
-  const selection = document.getElementsByName(name);
+  const selection = document.getElementsByName("player_"+name);
+  const state = document.getElementById(name).checked
   
-  //mark them all as selected
+  //mark them all as selected or unselected
   selection.forEach( (item) => {
-    item.checked = document.getElementById(name).checked;
+    item.checked = state;
+  })
+
+  // go through the array for those that have been touched, and update them.
+  Object.entries(playerColorElimination).forEach(([key,value]) => {
+    // don't reset the value if 
+    if (state == false) {
+      document.getElementById(key).checked = value;
+    }
   })
 }
 
 function setColor() {
   const player_colors = document.getElementsByClassName("player_color_selection");
-  console.log(player_colors.length);
+  
   [...player_colors].forEach( (item) => {
     if (item.value != "unknown") {
       item.style.backgroundColor = item.value;
@@ -174,3 +186,7 @@ function setColor() {
 const counters = document.getElementsByClassName("counter");
 [...counters].forEach((item) => {
   item.addEventListener("keydown", e => e.preventDefault()) })
+
+function updatePlayerColorElimination(element) {
+  playerColorElimination[element.id]= element.checked;
+}
