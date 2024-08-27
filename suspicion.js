@@ -1,12 +1,23 @@
-window.onbeforeunload = function() {
-    return "Data will be lost if you leave the page, are you sure?";
-  };
 
+// global vars
 var playerCount = 0;
 var playerColorElimination = {};
 
+// inform in case of accidental refresh
+window.onbeforeunload = function() {
+  return "Data will be lost if you leave the page, are you sure?";
+};
+
+// prevent numeric input by keyboard
+const counters = document.getElementsByClassName("counter");
+[...counters].forEach((item) => {
+  item.addEventListener("keydown", e => e.preventDefault()) })
+
+//resize
 visualViewport.onresize = () => {
   var scale = visualViewport.scale;
+
+  // set all cards to scale
   const cardClasses = document.querySelectorAll('input[type=text]');
   var new_width = 100 * scale *1;
   new_width = new_width.toString() + "px"
@@ -14,23 +25,17 @@ visualViewport.onresize = () => {
     element.style.width =  new_width;
   });
 
-  const checkboxes = document.querySelectorAll('.card-checkbox');
-  var new_width = 65 * scale *1.5;
+
+  const checkboxes = document.querySelectorAll('.card-checkbox-global');
+  var new_width = 65 * scale *1.2;
   new_width = new_width.toString() + "px"
   checkboxes.forEach(element => {
     element.style.width =  new_width;
   });
 
-  // const scoreheader = document.querySelectorAll('.score-header section');
-  // var new_width = 85 * scale *1;
-  // new_width = new_width.toString() + "px"
-  // scoreheader.forEach(element => {
-  //   element.style.width =  new_width;
-  // });
-
-
-
 };
+
+
 
 function calculateScore() {
 
@@ -182,10 +187,6 @@ function setColor() {
   })
 
 }
-
-const counters = document.getElementsByClassName("counter");
-[...counters].forEach((item) => {
-  item.addEventListener("keydown", e => e.preventDefault()) })
 
 function updatePlayerColorElimination(element) {
   playerColorElimination[element.id]= element.checked;

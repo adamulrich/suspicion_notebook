@@ -1,4 +1,3 @@
-
 body {
     max-width: 800px;
     justify-content: center;
@@ -13,6 +12,11 @@ body {
     text-align: center;
     margin-right: 2px;
 }
+
+.card-checkbox-global .checkbox-label {
+    width: auto;
+}
+
 
 main {
     display: flex;
@@ -36,7 +40,6 @@ select {
     accent-color: red;
     text-align: center;
     margin-bottom: 7px;
-
 }
 
 .card-checkbox {
@@ -44,6 +47,7 @@ select {
     text-align: center;
     margin-bottom: 7px;
 }
+
 .player-correct-checkbox{
     accent-color: rgb(55, 232, 55);
     text-align: right;
@@ -57,9 +61,6 @@ input[type=text]{
     width: 100px;
 }
 
-
- 
-
 .score-header {
     display: flex;
     flex-wrap: wrap;
@@ -68,7 +69,6 @@ input[type=text]{
     margin-bottom: 10px;
     width: 100%;
     line-height: 50px;
-
 }
 
 .image {
@@ -91,6 +91,7 @@ input[type=number] {
     height: 50px;
     width: 75px;
 }
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     opacity: 1 !important;
@@ -101,4 +102,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 .counter {
     caret-color: transparent;
+}
+
+footer {
+    font-weight: 300;
+    text-align: center;
 }
