@@ -27,7 +27,7 @@ visualViewport.onresize = () => {
 
   // set all global checkboxes to scale when pinch zooming
   const checkboxes = document.querySelectorAll('.card-checkbox-global');
-  var new_width = 65 * scale *1.2;
+  var new_width = 65 * scale *1;
   new_width = new_width.toString() + "px"
   checkboxes.forEach(element => {
     element.style.width =  new_width;
