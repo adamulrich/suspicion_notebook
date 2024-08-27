@@ -19,57 +19,34 @@
         <h1>Suspicion Notebook</h1>
         <img class="image" src="images/pic3121492.png" style="max-width:100%;max-height:100%;">
         <div class="score-header">
-            <section>
-                <img src="images/orange_gem.png" width="30px">
-                <input id="orange_count" name="orange_count"
-                    class = "counter"
-                    type="number"
-                    inputmode="none"
-                    min="0"
-                    step="1"
-                    onfocus="this.previousValue = this.value"
-                    onkeydown="this.previousValue = this.value"
-                    oninput="validity.valid || (value = this.previousValue)"
-                    onchange="calculateScore()"
-                    onkeydown="return false"
-                    value="0"
-                />
+            <section class="gem-score">
+                <img class="gem-img" src="images/orange_gem.png" width="30px">
+                <p class ="gem-counter" id="orange_count">0</p>
+                <section class="span-row">
+                    <p class="gem-btn color-orange" id="orange_plus" onclick="changecount('orange',1)">▲</p>
+                    <p class="gem-btn color-orange" id="orange_minus" onclick="changecount('orange',-1)">▼</p>
+                </section>
             </section>
-            <section>
-                <img src="images/red_gem.png" width="30px">
-                <input id="red_count" name="red_count"
-                    class = "counter"
-                    type="number"
-                    inputmode="none"
-                    min="0"
-                    step="1"
-                    onfocus="this.previousValue = this.value"
-                    onkeydown="this.previousValue = this.value"
-                    oninput="validity.valid || (value = this.previousValue)"
-                    onchange="calculateScore()"
-                    onkeydown="return false"
-                    value="0"
-                />
+            <section class="gem-score">
+                <img class="gem-img" src="images/red_gem.png" width="30px">
+                <p class ="gem-counter" id="red_count">0</p>
+                <section class="span-row">
+                    <p class="gem-btn color-red" id="red_plus" onclick="changecount('red',1)">▲</p>
+                    <p class="gem-btn color-red" id="red_minus" onclick="changecount('red',-1)">▼</p>
+                </section>
             </section>
-            <section>
-                <img src="images/green_gem.png" width="30px">
-                <input id="green_count" name="green_count"
-                    class = "counter"
-                    type="number"
-                    inputmode="none"
-                    min="0"
-                    step="1"
-                    onfocus="this.previousValue = this.value"
-                    onkeydown="this.previousValue = this.value"
-                    oninput="validity.valid || (value = this.previousValue)"
-                    onchange="calculateScore()"
-                    onkeydown="return false"
-                    value="0"
-                />
+            <section class="gem-score">
+                <img class="gem-img" src="images/green_gem.png" width="30px">
+                <p class ="gem-counter"  id="green_count">0</p>
+                <section class="span-row">
+                    <p class="gem-btn color-green" id="green_plus" onclick="changecount('green',1)">▲</p>
+                    <p class="gem-btn color-green" id="green_minus" onclick="changecount('green',-1)">▼</p>
+                </section>
             </section>
-            <section>
-                <label class="bold">Score:</label>
-                <label id="score">0</label>
+
+            <section class="gem-score-total">
+                <label class="bold-label">Score:</label>
+                <label class="score" id="score">0</label>
             </section>
         </div>
         <div id="colors_seen">

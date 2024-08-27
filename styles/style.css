@@ -79,8 +79,16 @@ input[type=text]{
     width: 50%;
 }
 
-.bold {
+.bold-label {
     font-weight: bolder;
+    font-size: xx-large;
+}
+
+.score {
+    font-size: xx-large;
+    margin-left: 3px;
+    color: green;
+    text-align: center;
 }
 
 h1, h2 {
@@ -107,4 +115,47 @@ input[type=number]::-webkit-outer-spin-button {
 footer {
     font-weight: 300;
     text-align: center;
+}
+
+.gem-score {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+.gem-score-total {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+.gem-btn {
+    height: 25px;
+    width: 25px;
+    font-size: xx-large;   
+}
+
+.color-orange {
+    color: orange;
+}
+
+.color-red {
+    color: red;
+}
+
+.color-green {
+    color: #44cc29;
+}
+
+.gem-counter {
+    margin-left: 8px;
+    margin-top: 15px;
+    width: 25px;
+    font-size: xx-large;
+}
+
+.gem-img {
+    margin-top: 10px;
 }

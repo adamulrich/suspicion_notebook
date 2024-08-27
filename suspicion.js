@@ -2,16 +2,29 @@
 // global vars
 var playerCount = 0;
 var playerColorElimination = {};
-
+var orange_count = 0;
+var red_count = 0;
+var green_count = 0;
 // inform in case of accidental refresh
 window.onbeforeunload = function() {
   return "Data will be lost if you leave the page, are you sure?";
 };
 
-// prevent numeric input by keyboard
-const counters = document.getElementsByClassName("counter");
-[...counters].forEach((item) => {
-  item.addEventListener("keydown", e => e.preventDefault()) })
+// // prevent numeric input by keyboard
+// const counters = document.getElementsByClassName("counter");
+// [...counters].forEach((item) => {
+//   item.addEventListener("keydown", e => e.preventDefault()) })
+
+function changecount(color, value) {
+  if  (!(window[color+"_count"]== 0 && value==-1))  {
+    window[color+"_count"] += value
+    var colorScore = document.getElementById(color+"_count")
+    colorScore.innerText = window[color+"_count"]
+  }
+
+  calculateScore();
+}
+
 
 //resize
 visualViewport.onresize = () => {
@@ -39,20 +52,20 @@ function calculateScore() {
 
   //score gems
   var score = 0;
-  var orange_count = Number(document.getElementById("orange_count").value);
-  var red_count = Number(document.getElementById("red_count").value);
-  var green_count = Number(document.getElementById("green_count").value);
+  var orange_temp = orange_count;
+  var red_temp = red_count;
+  var green_temp = green_count;
 
   // remove groups of 3 for 6 points
-  while (orange_count > 0 && red_count > 0 && green_count >0 ) {
+  while (orange_temp > 0 && red_temp > 0 && green_temp >0 ) {
     score +=6;
-    orange_count -= 1;
-    red_count -= 1;
-    green_count -= 1;
+    orange_temp -= 1;
+    red_temp -= 1;
+    green_temp -= 1;
   }
 
   // add the rest of the gems
-  score += orange_count + red_count + green_count;
+  score += orange_temp + red_temp + green_temp;
 
   // for each player that is marked correct, add 7
   const correct_checkboxes = document.querySelectorAll("input:checked.correct-checkbox");
