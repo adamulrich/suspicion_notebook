@@ -2,8 +2,8 @@
     "name": "Suspicion Notebook",
     "short_name": "Suspicion NB",
     "description": "Helper App for playing Suspicion Board Game",
-    "scope": "/suspicion_notebook/",
-    "start_url": "/suspicion_notebook",
+    "scope": "./",
+    "start_url": "./",
    
     "background_color": "#ffffff",
     "theme_color": "#ffffff",

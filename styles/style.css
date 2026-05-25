@@ -117,6 +117,36 @@ footer {
     text-align: center;
 }
 
+.how-to {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    background-color: #f8f9fa;
+}
+
+.how-to > summary {
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1.6;
+}
+
+.how-to-body {
+    line-height: 1.5;
+    margin-top: 8px;
+}
+
+.how-to-body h3 {
+    font-size: 1.1rem;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+.how-to-body ul {
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+
 .gem-score {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

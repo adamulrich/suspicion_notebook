@@ -8,11 +8,11 @@ var APP_PREFIX = 'snpwa_';
 // you need to change this version (version_01, version_02…). 
 // If you don't change the version, the service worker will give your
 // users the old files!
-var VERSION = 'version_22';
+var VERSION = 'v23';
  
-// The files to make available for offline use. make sure to add 
+// The files to make available for offline use. make sure to add
 // others to this list
-var URLS = [    
+var URLS = [
   `${GHPATH}/`,
   `${GHPATH}/index.html`,
   `${GHPATH}/styles/style.css`,
@@ -24,3 +24,10 @@ var URLS = [
   `${GHPATH}/images/red_gem.png`,
   `${GHPATH}/images/green_gem.png`,
 ]
+
+// Reply with the cache version when the page asks
+self.addEventListener('message', function (event) {
+  if (event.data === 'GET_VERSION' && event.ports && event.ports[0]) {
+    event.ports[0].postMessage(VERSION);
+  }
+});

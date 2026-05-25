@@ -10,6 +10,16 @@ window.onbeforeunload = function() {
   return "Data will be lost if you leave the page, are you sure?";
 };
 
+// guard against accidental back-navigation (browser back, Android back, iOS swipe-back)
+history.pushState(null, '', location.href);
+window.addEventListener('popstate', function () {
+  if (confirm("Data will be lost if you leave the page, are you sure?")) {
+    history.back();
+  } else {
+    history.pushState(null, '', location.href);
+  }
+});
+
 // // prevent numeric input by keyboard
 // const counters = document.getElementsByClassName("counter");
 // [...counters].forEach((item) => {

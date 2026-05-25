@@ -18,6 +18,61 @@
     <header class="m-3">
         <h1>Suspicion Notebook</h1>
         <img class="image" src="images/pic3121492.png" style="max-width:100%;max-height:100%;">
+        <details class="how-to">
+            <summary>How to use this companion app</summary>
+            <div class="how-to-body">
+                <p>
+                    Suspicion is a deduction game: each player is secretly one of ten guests
+                    (pink, red, brown, orange, yellow, green, blue, purple, gray, white).
+                    Use this notebook to track what you've learned about each opponent and
+                    to tally your gems and score.
+                </p>
+
+                <h3>Gems &amp; score</h3>
+                <ul>
+                    <li>Use the ▲ / ▼ buttons above each gem to add or remove gems as you collect them.</li>
+                    <li>The <strong>Score</strong> updates automatically:
+                        <ul>
+                            <li>Every complete set of 3 different gems (one orange, one red, one green) is worth <strong>6 points</strong>.</li>
+                            <li>Each remaining loose gem is worth <strong>1 point</strong>.</li>
+                            <li>Every player you've marked <em>correct?</em> adds <strong>7 points</strong> (your end-of-game guess bonus).</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Colors Seen (global)</h3>
+                <p>
+                    The top row of color boxes is for guests you've ruled out for
+                    <em>everyone</em> &mdash; for example, when you peek at a character
+                    card via an action and know that guest isn't any of the other players.
+                </p>
+                <ul>
+                    <li>Tap a color to eliminate it on every player card at once.</li>
+                    <li>Untap the color to restore the per-player marks you had set before.</li>
+                </ul>
+
+                <h3>Tracking opponents</h3>
+                <ul>
+                    <li>Tap <strong>Add Player</strong> once for each opponent (up to 6).</li>
+                    <li>Enter their <strong>name</strong> in the text field.</li>
+                    <li>As you learn what a player <em>isn't</em> (from their answers to
+                        questions, the cards they look at, etc.), tap the color boxes on
+                        their card to eliminate those guests.</li>
+                    <li>When only one color is left, pick that color from the
+                        <strong>Player Color</strong> dropdown to lock it in &mdash; the
+                        dropdown recolors so you can see your deductions at a glance.</li>
+                    <li>Check <strong>correct?</strong> on a player when you're confident
+                        in your final guess; it adds 7 to your score preview.</li>
+                </ul>
+
+                <h3>Tips</h3>
+                <ul>
+                    <li>Install the app to your home screen (PWA) so it opens full-screen and works offline.</li>
+                    <li>State is <strong>not saved</strong> &mdash; refreshing or closing the tab clears the notebook. The browser will warn you before you leave.</li>
+                    <li>Pinch-zoom is supported if you need bigger tap targets.</li>
+                </ul>
+            </div>
+        </details>
         <div class="score-header">
             <section class="gem-score">
                 <img class="gem-img" src="images/orange_gem.png" width="30px">
@@ -110,10 +165,16 @@
     </header>
     <script>
         if (navigator.serviceWorker) {
-          navigator.serviceWorker.register (
-            '/suspicion_notebook/sw.js',
-            {scope: '/suspicion_notebook/'}
-          )
+          navigator.serviceWorker.register('sw.js', {scope: './'})
+          navigator.serviceWorker.ready.then(function (reg) {
+            if (!reg.active) return;
+            var channel = new MessageChannel();
+            channel.port1.onmessage = function (e) {
+              var el = document.getElementById('app-version');
+              if (el && e.data) el.textContent = e.data;
+            };
+            reg.active.postMessage('GET_VERSION', [channel.port2]);
+          });
         }
         
     </script>
@@ -121,7 +182,7 @@
 
     </main>
     
-    <footer>&copy 2024 - Adam Ulrich</footer>
+    <footer>&copy 2024 - Adam Ulrich &middot; <span id="app-version"></span></footer>
    
 </body>
 </html>
