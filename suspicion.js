@@ -5,20 +5,10 @@ var playerColorElimination = {};
 var orange_count = 0;
 var red_count = 0;
 var green_count = 0;
-// inform in case of accidental refresh
-window.onbeforeunload = function() {
-  return "Data will be lost if you leave the page, are you sure?";
-};
 
-// guard against accidental back-navigation (browser back, Android back, iOS swipe-back)
-history.pushState(null, '', location.href);
-window.addEventListener('popstate', function () {
-  if (confirm("Data will be lost if you leave the page, are you sure?")) {
-    history.back();
-  } else {
-    history.pushState(null, '', location.href);
-  }
-});
+var STORAGE_KEY = 'suspicion_notebook_state';
+var COLORS = ['pink','red','brown','orange','yellow','green','blue','purple','gray','white'];
+var isRestoring = false;
 
 // // prevent numeric input by keyboard
 // const counters = document.getElementsByClassName("counter");
@@ -33,6 +23,7 @@ function changecount(color, value) {
   }
 
   calculateScore();
+  saveState();
 }
 
 
@@ -91,9 +82,9 @@ function addPlayer() {
   const html_template = `
   <div class="card">
   <label class="label label-default">Player <#number#> Name</label>
-  <input type="text" name="PlayerName">
+  <input type="text" name="PlayerName" oninput="saveState()">
   <div class="player-correct-checkbox">
-      <input type="checkbox" class="checkbox correct-checkbox" name="correct?" id="player<#number#>_correct" onchange="calculateScore()">
+      <input type="checkbox" class="checkbox correct-checkbox" name="correct?" id="player<#number#>_correct" onchange="calculateScore();saveState();">
       <label class="checkbox-label" style="background-color: #258a1d;color: aliceblue" for="player<#number#>_correct">correct?</label>
   </div>
 
@@ -177,6 +168,7 @@ function addPlayer() {
 
     // increment count
     playerCount +=1;
+    saveState();
   }
 }
 
@@ -192,17 +184,19 @@ function eliminateColor(name) {
 
   // go through the array for those that have been touched, and update them.
   Object.entries(playerColorElimination).forEach(([key,value]) => {
-    // don't reset the value if 
+    // don't reset the value if
     if (state == false) {
       document.getElementById(key).checked = value;
     }
   })
+
+  saveState();
 }
 
 function setColor() {
   // get all the player color selection values
   const player_colors = document.getElementsByClassName("player_color_selection");
-  
+
   // walk the list and set the foreground and background color correctly.
   [...player_colors].forEach( (item) => {
     if (item.value != "unknown") {
@@ -217,9 +211,130 @@ function setColor() {
     }
   })
 
+  saveState();
 }
 
 // set the value of the checkbox in the global array
 function updatePlayerColorElimination(element) {
   playerColorElimination[element.id]= element.checked;
+  saveState();
 }
+
+// --- persistence -----------------------------------------------------------
+
+function saveState() {
+  if (isRestoring) return;
+
+  var state = {
+    orange_count: orange_count,
+    red_count: red_count,
+    green_count: green_count,
+    playerCount: playerCount,
+    playerColorElimination: playerColorElimination,
+    globalColors: {},
+    players: []
+  };
+
+  COLORS.forEach(function (c) {
+    var el = document.getElementById(c);
+    state.globalColors[c] = !!(el && el.checked);
+  });
+
+  var cards = document.querySelectorAll('#card-container .card');
+  cards.forEach(function (card) {
+    var player = {
+      name: card.querySelector('input[name=PlayerName]').value,
+      correct: card.querySelector('input[name="correct?"]').checked,
+      color: card.querySelector('.player_color_selection').value,
+      eliminations: {}
+    };
+    COLORS.forEach(function (c) {
+      var cb = card.querySelector('input[name=player_' + c + ']');
+      player.eliminations[c] = !!(cb && cb.checked);
+    });
+    state.players.push(player);
+  });
+
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) {
+    // storage may be full or disabled; ignore
+  }
+}
+
+function loadState() {
+  var raw;
+  try { raw = localStorage.getItem(STORAGE_KEY); } catch (e) { return; }
+  if (!raw) return;
+
+  var state;
+  try { state = JSON.parse(raw); } catch (e) { return; }
+  if (!state) return;
+
+  isRestoring = true;
+
+  // gems
+  orange_count = state.orange_count || 0;
+  red_count = state.red_count || 0;
+  green_count = state.green_count || 0;
+  document.getElementById('orange_count').innerText = orange_count;
+  document.getElementById('red_count').innerText = red_count;
+  document.getElementById('green_count').innerText = green_count;
+
+  // global Colors Seen checkboxes
+  COLORS.forEach(function (c) {
+    var el = document.getElementById(c);
+    if (el) el.checked = !!(state.globalColors && state.globalColors[c]);
+  });
+
+  // restore the snapshot used by eliminateColor()'s restore logic
+  playerColorElimination = state.playerColorElimination || {};
+
+  // recreate player cards and populate them
+  (state.players || []).forEach(function (player, idx) {
+    addPlayer();
+    var card = document.querySelectorAll('#card-container .card')[idx];
+    if (!card) return;
+    card.querySelector('input[name=PlayerName]').value = player.name || '';
+    card.querySelector('input[name="correct?"]').checked = !!player.correct;
+    card.querySelector('.player_color_selection').value = player.color || 'unknown';
+    COLORS.forEach(function (c) {
+      var cb = card.querySelector('input[name=player_' + c + ']');
+      if (cb) cb.checked = !!(player.eliminations && player.eliminations[c]);
+    });
+  });
+
+  isRestoring = false;
+
+  setColor();
+  calculateScore();
+}
+
+function newGame() {
+  if (!confirm('Start a new game? All current data will be lost.')) return;
+
+  try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+
+  // reset gems
+  orange_count = 0;
+  red_count = 0;
+  green_count = 0;
+  document.getElementById('orange_count').innerText = '0';
+  document.getElementById('red_count').innerText = '0';
+  document.getElementById('green_count').innerText = '0';
+
+  // clear global Colors Seen
+  COLORS.forEach(function (c) {
+    var el = document.getElementById(c);
+    if (el) el.checked = false;
+  });
+
+  // clear players
+  document.getElementById('card-container').innerHTML = '';
+  playerCount = 0;
+  playerColorElimination = {};
+
+  calculateScore();
+}
+
+document.addEventListener('DOMContentLoaded', loadState);
